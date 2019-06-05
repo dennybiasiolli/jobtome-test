@@ -35,29 +35,45 @@ const decNumbers = [
 ];
 
 const mill = [
-    'thousand',
-    'million',
-    'billion',
-    'trillion',
-    'quadrillion',
+    '',
+    ' thousand',
+    ' million',
+    ' billion',
+    ' trillion',
+    ' quadrillion',
 ];
 
-
-function getIntegerString(num: number): string {
+function getIntegerString(
+    num: number,
+    millIndex = 0,
+    useAnd = false,
+): string {
     if (num <= 19) {
-        return baseNumbers[num];
+        return (useAnd && !millIndex ? 'and ' : '') +
+            baseNumbers[num] +
+            mill[millIndex];
     } else if (num <= 99) {
         const dec = Math.floor(num / 10);
         const n = num % 10;
-        return decNumbers[dec] +
-            ((n > 0) ? '-' + getIntegerString(n) : '');
+        return (useAnd && !millIndex ? 'and ' : '') +
+            decNumbers[dec] +
+            ((n > 0) ? '-' + getIntegerString(n) : '') +
+            mill[millIndex];
     } else if (num <= 999) {
         const dec = Math.floor(num / 100);
         const n = num % 100;
         return baseNumbers[dec] + ' hundred' +
-            ((n > 0) ? ' and ' + getIntegerString(n) : '');
+            ((n > 0) ? ' and ' + getIntegerString(n) : '') +
+            mill[millIndex];
+    } else {
+        const m = Math.floor(num / 1000);
+        const n = num % 1000;
+        if (millIndex + 1 >= mill.length) {
+            throw new Error(`Number too large.`);
+        }
+        return getIntegerString(m, millIndex + 1) +
+            ((n > 0) ? ' ' + getIntegerString(n, millIndex, true) : '');
     }
-    return 'unimplemented';
 }
 
 function getDecimalString(strNum: string) {
