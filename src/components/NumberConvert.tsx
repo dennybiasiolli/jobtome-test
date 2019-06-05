@@ -16,24 +16,26 @@ export function NumberConvert(props: NumberConvertProps) {
             Insert a number, then click on the `Convert` button.<br />
             The number will be converted in an english string.
         </h2>
-        <div>
-            <TextField
-                type="number"
-                fullWidth
-                variant="outlined"
-                placeholder="Insert numeric value here"
-                inputRef={inputNumber}
-            />
-        </div>
-        <br />
-        <div>
-            <Button
-                variant="contained"
-                color="primary"
-                onClick={handleNumberToEnglish}>
-                Convert number
+        <form onSubmit={handleSubmitForm}>
+            <div>
+                <TextField
+                    type="number"
+                    fullWidth
+                    variant="outlined"
+                    placeholder="Insert numeric value here"
+                    inputRef={inputNumber}
+                />
+            </div>
+            <br />
+            <div>
+                <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={handleNumberToEnglish}>
+                    Convert number
             </Button>
-        </div>
+            </div>
+        </form>
         <br />
         <div>
             <TextField
@@ -62,5 +64,10 @@ export function NumberConvert(props: NumberConvertProps) {
                 });
             }
         }
+    }
+
+    function handleSubmitForm(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault();
+        handleNumberToEnglish();
     }
 }
