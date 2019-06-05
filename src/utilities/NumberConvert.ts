@@ -35,8 +35,16 @@ const decNumbers = [
 ];
 
 
-function getIntegerString(num: number) {
-    return baseNumbers[num];
+function getIntegerString(num: number): string {
+    if (num <= 19) {
+        return baseNumbers[num];
+    } else if (num <= 99) {
+        const dec = Math.floor(num / 10);
+        const n = num % 10;
+        return decNumbers[dec] +
+            ((n > 0) ? '-' + getIntegerString(n) : '');
+    }
+    return 'unimplemented';
 }
 
 function getDecimalString(strNum: string) {
