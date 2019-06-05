@@ -48,7 +48,9 @@ export function NumberConvert(props: NumberConvertProps) {
     function handleNumberToEnglish() {
         if (inputNumber.current) {
             setState({
-                outputString: numberToEnglish(inputNumber.current.value)
+                outputString: numberToEnglish(
+                    parseFloat(inputNumber.current.value)
+                )
             });
         }
     }
