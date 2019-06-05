@@ -7,6 +7,7 @@ export interface NumberConvertProps extends React.PropsWithChildren<{}> { };
 
 export function NumberConvert(props: NumberConvertProps) {
     const [state, setState] = useState({
+        isError: false,
         outputString: '',
     });
     const inputNumber = useRef<HTMLInputElement>(null);
@@ -37,21 +38,29 @@ export function NumberConvert(props: NumberConvertProps) {
         <div>
             <TextField
                 fullWidth
-                disabled
                 variant="outlined"
                 placeholder="String value will appear here"
                 value={state.outputString}
+                error={state.isError}
             />
         </div>
     </Container>);
 
     function handleNumberToEnglish() {
         if (inputNumber.current) {
-            setState({
-                outputString: numberToEnglish(
-                    parseFloat(inputNumber.current.value)
-                )
-            });
+            try {
+                setState({
+                    isError: false,
+                    outputString: numberToEnglish(
+                        parseFloat(inputNumber.current.value)
+                    ),
+                });
+            } catch (error) {
+                setState({
+                    isError: true,
+                    outputString: error,
+                });
+            }
         }
     }
 }
