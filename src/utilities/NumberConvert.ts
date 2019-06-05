@@ -50,5 +50,16 @@ export function numberToEnglish(originalNumber: number | string): string {
     } else if (num === Number.NEGATIVE_INFINITY) {
         return 'negative infinity';
     }
+
+    const isNegative = num < 0;
+    num = Math.abs(num);
+    const integerNum = Math.floor(num);
+    const decimalNum = num - integerNum;
+
+    let strNumber = isNegative ? 'negative ' : '';
+    if (decimalNum === 0) {
+        return strNumber + baseNumbers[integerNum];
+    }
+
     return 'unimplemented';
 };
