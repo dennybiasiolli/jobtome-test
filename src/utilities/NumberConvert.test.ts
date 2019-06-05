@@ -20,6 +20,8 @@ it('shouold convert numbers correctly', () => {
     expect(numberToEnglish(27)).toBe('twenty-seven');
     expect(numberToEnglish(-50)).toBe('negative fifty');
     expect(numberToEnglish(-99)).toBe('negative ninety-nine');
+    expect(numberToEnglish(100)).toBe('one hundred');
+    expect(numberToEnglish(125)).toBe('one hundred and twenty-five');
     expect(numberToEnglish(19000)).toBe('nineteen thousand');
     expect(numberToEnglish(319000)).toBe('three hundred and nineteen thousand');
     expect(numberToEnglish(1000000)).toBe('one million');

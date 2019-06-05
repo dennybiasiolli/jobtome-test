@@ -34,6 +34,14 @@ const decNumbers = [
     'ninety',
 ];
 
+const mill = [
+    'thousand',
+    'million',
+    'billion',
+    'trillion',
+    'quadrillion',
+];
+
 
 function getIntegerString(num: number): string {
     if (num <= 19) {
@@ -43,6 +51,11 @@ function getIntegerString(num: number): string {
         const n = num % 10;
         return decNumbers[dec] +
             ((n > 0) ? '-' + getIntegerString(n) : '');
+    } else if (num <= 999) {
+        const dec = Math.floor(num / 100);
+        const n = num % 100;
+        return baseNumbers[dec] + ' hundred' +
+            ((n > 0) ? ' and ' + getIntegerString(n) : '');
     }
     return 'unimplemented';
 }
