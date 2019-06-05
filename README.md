@@ -1,3 +1,26 @@
+# jobtome-test
+
+## Task
+
+Create a function which takes a number and returns the name of the number in
+English as a lowercase string.
+The function should support at least the numbers ±2 Quadrillion
+(±2,000,000,000,000,000) as well as positive and negative infinity.
+
+
+## Solution
+
+The function `numberToEnglish` is located in
+[`src/utilities/NumberConvert.ts`](src/utilities/NumberConvert.ts),
+you can find tests in
+[`src/utilities/NumberConvert.test.ts`](src/utilities/NumberConvert.test.ts).
+
+Launch tests with `npm test` or `yarn test`,
+or use the example React webpage running `npm start` or `yarn start` and
+openint [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+-----
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
